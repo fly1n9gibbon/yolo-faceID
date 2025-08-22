@@ -1,0 +1,59 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets / config files
+config.yaml
+.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore Python cache and environment folders
+__pycache__/
+*.pyc
+env/
+venv/
+
+# Ignore unwanted files and folders
+data/
+images_to_recognize/
+mlruns/
+yolo_cls_project/
+recognition_runs/
+
+# Ignore unwanted files
+WARP.md
+train_recognizer.ipynb
+mlflow_import_single_run.py
+mlflow_import_runs.py
+ultimate_face_recognizer.py
+project_approach.txt
+
+
