@@ -46,7 +46,7 @@ This separation allows me to:
 
 ```
 yolo-faceID/
-├── yolo_face_recognizer.py           # Main recognition pipeline
+├── yolo_face_recognizer.py           # Main recognition script
 ├── yolo_config.py                    # Configuration
 ├── analyze_logs.py                   # Model performance analysis tool
 ├── analyze_yolo_classification_runs.py  # Training analysis tool
@@ -55,7 +55,7 @@ yolo-faceID/
 │   └── yolo11l_cls_models/           # Classification models
         ├── main/
         └── warmup/         
-└── recognition_runs/                 # Experimental results
+└── recognition_runs/                 # Results of the individual batch runs
     ├── model_timestamp-results/
     │   ├── person_folders/
     │   ├── unknown/
@@ -100,16 +100,16 @@ I trained multiple YOLO11 classification models with different configurations to
 - **Occlusion-Robust Model**: Special augmentations including random erasing
 - **General Robust Model**: Combined augmentation strategies for overall robustness
 
-Key augmentation parameters (example below) I experimented with:
+Key augmentation parameters I experimented with:
 ```python
-hsv_s: 0.7          # HSV saturation adjustment for lighting robustness  
-hsv_v: 0.4          # HSV value adjustment for brightness variations
-degrees: 10         # Rotation augmentation for pose variation
-scale: 0.5          # Scale variation for distance robustness
-shear: 0.1          # Shear transformation for geometric robustness
-perspective: 0.0005 # Perspective transformation
-fliplr: 0.5         # Horizontal flip probability
-erasing: 0.4        # Random erasing for occlusion simulation
+hsv_s:          # HSV saturation adjustment for lighting robustness  
+hsv_v:          # HSV value adjustment for brightness variations
+degrees:        # Rotation augmentation for pose variation
+scale:          # Scale variation for distance robustness
+shear:          # Shear transformation for geometric robustness
+perspective:    # Perspective transformation
+fliplr:         # Horizontal flip probability
+erasing:        # Random erasing for occlusion simulation
 ```
 
 The warmup training strategy helped achieve better convergence by gradually increasing learning rates during initial epochs, which was particularly important for the challenging condition datasets.
@@ -137,7 +137,7 @@ YOLO_RECOGNITION_CONFIDENCE_THRESHOLD = 0.70
 
 #### Real-Time Testing
 ```bash
-python yolo_face_recognizer.py -s live [-vs CAMERA_INDEX] [-t THRESHOLD]
+python3 yolo_face_recognizer.py -s live [-vs CAMERA_INDEX] [-t THRESHOLD]
 ```
 
 **Parameters**:
@@ -151,7 +151,7 @@ python yolo_face_recognizer.py -s live [-vs CAMERA_INDEX] [-t THRESHOLD]
 
 #### Batch Processing
 ```bash
-python yolo_face_recognizer.py -s folder -i /path/to/test_dataset [-t THRESHOLD]
+python3 yolo_face_recognizer.py -s folder -i /path/to/test_dataset [-t THRESHOLD]
 ```
 
 **Output Structure**:
@@ -169,7 +169,7 @@ recognition_runs/
 ```bash
 # Evaluate performance across confidence thresholds
 for threshold in 0.5 0.6 0.7 0.8 0.9; do
-    python yolo_face_recognizer.py -s folder -i challenging_dataset/ -t $threshold
+    python3 yolo_face_recognizer.py -s folder -i challenging_dataset/ -t $threshold
 done
 ```
 
@@ -177,7 +177,7 @@ done
 
 #### Recognition Performance Analysis
 ```bash
-python analyze_logs.py -i recognition_runs/
+python3 analyze_logs.py -i recognition_runs/
 ```
 
 **Generated Outputs**:
@@ -191,7 +191,7 @@ python analyze_logs.py -i recognition_runs/
 
 #### Training Run Analysis
 ```bash
-python analyze_yolo_classification_runs.py --runs-dir training_experiments/ --out-dir analysis_results/
+python3 analyze_yolo_classification_runs.py --runs-dir training_experiments/ --out-dir analysis_results/
 ```
 
 **Generated Outputs**:
