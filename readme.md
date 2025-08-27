@@ -45,14 +45,16 @@ This separation allows me to:
 ## Project Structure
 
 ```
-yolo-face-recognition/
+yolo-faceID/
 ├── yolo_face_recognizer.py           # Main recognition pipeline
-├── yolo_config.py                    # Configuration management
-├── analyze_logs.py                   # Performance analysis tool
-├── analyze_yolo_classification_runs.py  # Training analysis
+├── yolo_config.py                    # Configuration
+├── analyze_logs.py                   # Model performance analysis tool
+├── analyze_yolo_classification_runs.py  # Training analysis tool
 ├── models/
-│   ├── face_detector_model.pt        # Fine-tuned detection model
-│   └── yolo11l_recognizer_*/         # Classification model variants
+│   ├── yolo11_detection_model        # Detection model
+│   └── yolo11l_cls_models/           # Classification models
+        ├── main/
+        └── warmup/         
 └── recognition_runs/                 # Experimental results
     ├── model_timestamp-results/
     │   ├── person_folders/
@@ -91,7 +93,7 @@ yolo-face-recognition/
 I fine-tuned a single YOLO11 detection model specifically for robust face detection across various lighting conditions and partial occlusions.
 
 ### Classification Models
-I trained multiple YOLO11 classification models with different configurations to handle challenging conditions. All models were trained using a **warmup strategy** to ensure stable convergence and optimal performance:
+I trained multiple YOLO11 classification models with different configurations to handle challenging conditions. Some models were trained using a **warmup strategy** to ensure stable convergence and optimal performance:
 
 - **Baseline Model**: Standard augmentations for controlled conditions
 - **Enhanced Lighting Model**: Optimized HSV augmentations for lighting robustness
