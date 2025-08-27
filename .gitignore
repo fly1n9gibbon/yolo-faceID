@@ -42,6 +42,7 @@ env/
 venv/
 
 # Ignore unwanted files and folders
+some_docs/
 data/
 images_to_recognize/
 mlruns/
